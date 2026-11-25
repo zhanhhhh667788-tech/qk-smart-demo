@@ -1,0 +1,6 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,26376,r=>{"use strict";let e;r.i(47167);let o=r=>`/qk-smart-demo/qk-rules/${r}`,t="暂时无法加载网页规则，请刷新后重试。";async function i(){let r=window;if(r.loadPyodide||await new Promise((r,e)=>{let i=document.createElement("script");i.src=o("runtime/pyodide.js"),i.onload=()=>r(),i.onerror=()=>{i.remove(),e(Error(t))},document.head.append(i)}),!r.loadPyodide)throw Error(t);let[e,i]=await Promise.all([r.loadPyodide({indexURL:o("runtime/")}),fetch(o("rules.zip"))]);if(!i.ok)throw Error(t);return e.FS.writeFile("/qk-rules.zip",new Uint8Array(await i.arrayBuffer())),e.runPython(`
+import sys
+sys.path.insert(0, '/qk-rules.zip')
+from browser_bridge import evaluate_json
+evaluate_json
+`)}async function a(r,a){let n;if("health"===r)return{deepseek:!1};if("policies"===r){let r=await fetch(o("policies.json"));if(!r.ok)throw Error(t);return r.json()}try{let o=await (e??=i().catch(r=>{throw e=void 0,r})),t=new Intl.DateTimeFormat("sv-SE",{timeZone:"Asia/Shanghai"}).format();n=JSON.parse(o(r,JSON.stringify(a??{}),t))}catch(r){throw console.error("Unable to evaluate browser policy rules",r),Error(t)}if(n.error)throw Error(n.error);return n.value}r.s(["browserApi",0,a])}]);
